@@ -133,6 +133,7 @@ class Game(arcade.Window):
         elif key == arcade.key.UP:
             self._held_item = arcade.Sprite("images/x.png", scale=10, center_x=500000, center_y=50000)
             self._items = []
+            self._hold = False
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         if button == arcade.MOUSE_BUTTON_LEFT:
@@ -151,7 +152,8 @@ class Game(arcade.Window):
                 elif x in range(340, 460, 1) and y in range(140, 190, 1):
                     self._hold = True
                     self._item = arcade.Sprite("images/x.png", scale=10, center_x=500000, center_y=50000)
-                    self._held_item = arcade.Sprite("images/egg_bagel.png", scale=1.5, center_x=750, center_y=630)
+                    # checks if order held is what the customer ordered
+                    self.check_order()
 
         elif button == arcade.MOUSE_BUTTON_RIGHT:
             if self._hold:
@@ -201,12 +203,15 @@ class Game(arcade.Window):
         if self._items[0] == "egg" and len(self._items) == 1:
             order = "egg"
             self._possible_points += 10
+            self._held_item = arcade.Sprite("images/egg.png", scale=1, center_x=750, center_y=630)
         elif self._items[0] == "bagel" and len(self._items) == 1:
             order = "bagel"
             self._possible_points += 10
+            self._held_item = arcade.Sprite("images/bagel.png", scale=1.5, center_x=750, center_y=630)
         elif self._items[0] == "bagel" and self._items[1] == "egg" and len(self._items) == 2:
             order = "egg bagel"
             self._possible_points += 20
+            self._held_item = arcade.Sprite("images/egg_bagel.png", scale=1.5, center_x=750, center_y=630)
 
         if order == self._order_requested:
             self._correct_order = True
