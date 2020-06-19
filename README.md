@@ -17,6 +17,8 @@ Keys:
 	Arrow (LEFT, RIGHT): 
 		Moves chef
 		Not necessary to play game
+	Arrow (UP):
+		Resets items held
 	Mouse Click (LEFT):
 		Picks up items such as the ingredients on the counter or the food on the grill
 	Mouse Click (RIGHT):
@@ -29,8 +31,11 @@ Python Concepts Utilized:
             	self._hold = True
            		self._items.append("egg")
 			checks if player clicked on egg cartons and gives player an egg to cook.
+			
+	Opening files to keep track of scores even after code is done running.
 	
 	List indexing to keep track of all items a player has cooked.
+	
 	
 Arcade Features Utilized:
 	Drawing and moving sprites
